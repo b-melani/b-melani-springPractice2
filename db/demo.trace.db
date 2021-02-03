@@ -1,9 +1,0 @@
-2021-02-02 19:16:38 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ORDER[*] (ID VARCHAR(255) NOT NULL, EMAIL VARCHAR(255), PRIMARY KEY (ID))"; expected "identifier"; SQL statement:
-create table order (id varchar(255) not null, email varchar(255), primary key (id)) [42001-200]
-2021-02-02 19:16:38 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE ORDER[*] ADD CONSTRAINT FKSKFIT2T3FX7S09HD59HUVVKPM FOREIGN KEY (EMAIL) REFERENCES USER"; expected "identifier"; SQL statement:
-alter table order add constraint FKskfit2t3fx7s09hd59huvvkpm foreign key (email) references user [42001-200]
-2021-02-02 19:16:38 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE ORDERED_FOOD ADD CONSTRAINT FK1FG5I5SEWG4LUXMYUV3L3WCG0 FOREIGN KEY (ORDER_ID) REFERENCES ORDER[*]"; expected "identifier"; SQL statement:
-alter table ordered_food add constraint FK1fg5i5sewg4luxmyuv3l3wcg0 foreign key (order_id) references order [42001-200]
