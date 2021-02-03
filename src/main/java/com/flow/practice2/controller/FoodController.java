@@ -68,7 +68,7 @@ public class FoodController {
         } else {
             foodList = foodService.listFood();
         }
-      //  log.debug("Found foods: {}", foodList.size());
+        log.debug("Found foods: {}", foodList.size());
         return foodList;
 
     }
