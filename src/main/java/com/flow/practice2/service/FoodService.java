@@ -71,4 +71,16 @@ public class FoodService {
         log.debug("Total count: {}", foodList.size());
         return foodList;
     }
+
+    public Food giveTheFood(String foodId) throws Exception {
+        log.info("Received a request on id: {}.", foodId);
+        Optional<Food> optionalFood = foodRepository.findById(foodId);
+        if (optionalFood.isEmpty()) {
+            log.error ("There is no food with id: {}.", foodId);
+            throw new Exception();
+        }
+        Food food = optionalFood.get();
+        log.debug("The food for id {} is: {}", foodId, food);
+        return food;
+    }
 }

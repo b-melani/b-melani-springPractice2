@@ -70,8 +70,19 @@ public class FoodController {
         }
         log.debug("Found foods: {}", foodList.size());
         return foodList;
-
     }
 
+    @GetMapping("/getTheFood")
+    public Food getFoodById(@RequestParam (value = "foodId") String foodId) {
+        log.info("Received a request for food with id: {}", foodId);
+        try {
+            Food food = foodService.giveTheFood(foodId);
+            return food;
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("Food with id: {} not found.", foodId);
+        }
+        return null;
+    }
 
 }
