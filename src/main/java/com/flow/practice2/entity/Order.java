@@ -11,18 +11,12 @@ public class Order {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private final String id;
+    private String id;
 
     @ManyToMany(mappedBy = "orders")
-    private final List<Food> foods;
+    private List<Food> foods;
     @ManyToOne
-    private final User orderedBy;
-
-    public Order(String id, List<Food> foods, User orderedBy) {
-        this.id = id;
-        this.foods = foods;
-        this.orderedBy = orderedBy;
-    }
+    private User orderedBy;
 
     public String getId() {
         return id;
@@ -34,6 +28,14 @@ public class Order {
 
     public User getOrderedBy() {
         return orderedBy;
+    }
+
+    public void setFoods(List<Food> foods) {
+        this.foods = foods;
+    }
+
+    public void setOrderedBy(User orderedBy) {
+        this.orderedBy = orderedBy;
     }
 
     @Override

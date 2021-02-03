@@ -3,13 +3,16 @@ package com.flow.practice2.service;
 import com.flow.practice2.entity.Food;
 import com.flow.practice2.exception.ValidationException;
 import com.flow.practice2.repository.FoodRepository;
+import org.apache.catalina.connector.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -30,7 +33,7 @@ public class FoodService {
 
     public Food createFood(Food fromRequest) throws ValidationException {
         if (fromRequest.getName() == null || fromRequest.getName() == "") {
-            throw new ValidationException();
+            throw new ValidationException("Jajj nem joo", HttpStatus.BAD_REQUEST);
         } else {
             log.info("Creating food based on: {} ...", fromRequest);
             Food result = foodRepository.save(fromRequest);
@@ -38,11 +41,11 @@ public class FoodService {
         }
     }
 
-    public Food updateAddress(String foodId, Food food) {
+    public Food updateAddress(String foodId, Food food) throws ValidationException {
         log.info("Updating food on food id: {}, food: {}", foodId, food);
         Optional<Food> optionalFood = foodRepository.findById(foodId);
         if (optionalFood.isEmpty()) {
-            throw new ValidationException();
+            throw new ValidationException("Jajj, nem jo", HttpStatus.BAD_REQUEST);
         }
         Food actualFood = optionalFood.get();
         log.debug("Original food was: {}", actualFood.getName());
